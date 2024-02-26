@@ -29,11 +29,3 @@ Welcome to the FoodBee project repository! This website is designed to facilitat
 4. **Catering Agency Listing**: Catering agencies can register on the platform and list surplus food items.
 5. **Inventory Management**: Catering agencies can manage their inventory and update food availability as needed.
 6. **Admin Oversight**: Administrators monitor user activities, catering agency listings, and ensure the smooth operation of the platform.
-
-## Contributing
-Contributions to the FoodBee project are welcome! Whether it's fixing a bug, implementing a new feature, or improving documentation, feel free to contribute to the development of the project. Please refer to the [contribution guidelines](CONTRIBUTING.md) for more details.
-
-## License
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per the terms of the license.
-
-Thank you for your interest in FoodBee! If you have any questions or feedback, please don't hesitate to reach out. Happy coding! 🐝🍽️
