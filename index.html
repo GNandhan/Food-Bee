@@ -12,42 +12,57 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
     body {
       font-family: "DM Sans";
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
-
     .allison-regular {
       font-family: "Allison";
       font-weight: normal;
       /* Use 'normal' instead of '400' */
       font-style: normal;
     }
-  </style>
+    .nav-link {
+    position: relative;
+    text-decoration: none;
+  }
 
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease; /* Transition property added */
+  }
+  
+  .nav-link:hover::after {
+    background-color: #FFC107;
+  }
+  </style>
 </head>
 
 <body>
   <!-- Navbar -->
   <div class="container">
-    <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none fw-bold">
           <div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div>
         </a>
       </div>
-
+  
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 text-dark">Home</a></li>
         <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
         <li><a href="#" class="nav-link px-2 text-dark">Contact</a></li>
       </ul>
-
+  
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Login</button>
+        <a href="./User/pages/login.html" type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Login</a>
       </div>
     </header>
   </div>
@@ -70,7 +85,7 @@
       <div class="col-lg col-md col-sm col">
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner" style="border-radius: 35px;">
-            <div class="carousel-item active" data-bs-interval="4000">
+            <div class="carousel-item active my-3" data-bs-interval="2000">
               <img src="User/static/carousel1.jpg" class="d-block w-100" alt="carousel image">
               <div class="carousel-caption d-none d-md-block">
                 <h1 class="text-start">Search For.</h1>
@@ -216,24 +231,24 @@
       <div class="col">
         <div class="fs-3 fw-bold text-warning text-center">Clients About Us</div>
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-          <div class="carousel-inner">
+          <div class="carousel-inner py-5">
             <div class="carousel-item active">
               <div class="row">
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user1.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"The food quality and service exceeded my expectations. Highly recommended!"</p>
                     <p class="fs-6 fw-bold">- John Doe</p>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user2.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"Amazing variety of dishes, and the delivery was prompt. Will order again!"</p>
                     <p class="fs-6 fw-bold">- Jane Smith</p>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user3.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"Delicious food and excellent service. Couldn't be happier!"</p>
@@ -245,21 +260,21 @@
             <!-- Add more carousel items with three testimonials each -->
             <div class="carousel-item">
               <div class="row">
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user1.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"The food quality and service exceeded my expectations. Highly recommended!"</p>
                     <p class="fs-6 fw-bold">- John Doe</p>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user2.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"Amazing variety of dishes, and the delivery was prompt. Will order again!"</p>
                     <p class="fs-6 fw-bold">- Jane Smith</p>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-lg col-md col-sm col">
                   <div class="card rounded-5 shadow-lg border-0 text-center mt-4 p-5 h-100">
                     <img src="User/static/user3.jpg" alt="testimonial-user" width="100" class="mx-auto">
                     <p class="fs-5">"Delicious food and excellent service. Couldn't be happier!"</p>
