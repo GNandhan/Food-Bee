@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,25 +11,20 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
         body {
             font-family: "DM Sans";
         }
-
         @import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
-
         .allison-regular {
             font-family: "Allison";
             font-weight: normal;
             /* Use 'normal' instead of '400' */
             font-style: normal;
         }
-
         .nav-link {
             position: relative;
             text-decoration: none;
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -41,15 +35,12 @@
             background-color: transparent;
             transition: background-color 0.3s ease;
         }
-
         .nav-link:hover::after {
             background-color: #FFC107;
         }
-
         .form-icon {
             font-size: 1.2rem;
         }
-
         .footer-container {
             position: fixed;
             bottom: 0;
@@ -57,7 +48,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Navbar -->
     <div class="container">
@@ -71,7 +61,6 @@
         </header>
     </div>
     <!-- Navbar Closed -->
-
     <!-- User Home -->
     <section class="container my-4">
         <div class="row d-flex justify-content-center align-items-center">
@@ -81,24 +70,30 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-8 col-xl-9 order-2 order-lg-1">
                                 <p class="text-center h2 fw-bold mb-4 mx-1 mx-md-4 mt-4">Sign in</p>
-                                <form class="mx-1 mx-md-4">
+                                <form class="mx-1 mx-md-4" method="post">
                                     <div class="d-flex flex-row align-items-center mb-3">
                                         <i class="bi bi-envelope me-3 text-warning form-icon"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" />
+                                            <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" required/>
                                         </div>
                                     </div>
+                                    <!-- Password -->
                                     <div class="d-flex flex-row align-items-center mb-3">
                                         <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter Password" />
+                                        <div class="form-outline flex-fill position-relative mb-0">
+                                            <div class="input-group shadow-sm rounded-4">
+                                                <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                                                <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
+                                            </div>
                                         </div>
                                     </div>
+                                                                        
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <a href="./home.html" type="button" class="btn btn-warning rounded-pill px-5 btn-lg">Login</a>
+                                        <button type="submit" class="btn btn-warning rounded-pill px-5 btn-lg">Login</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                       <span>Not registered yet?</span> <a href="./home.html" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right"></i></a>
+                                        <span>Not registered yet?</span> 
+                                        <a href="./register.html" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
                                     </div>
                                 </form>
                             </div>
@@ -109,7 +104,6 @@
         </div>
     </section>
     <!-- User Home Closed -->
-
     <!-- Section 8 -->
     <div class="footer-container container fixed-bottom">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-5 border-top">
@@ -127,10 +121,19 @@
         </footer>
     </div>
     <!-- Section 8 closed -->
-
+<script>
+    // Toggle password visibility
+        document.getElementById("showPassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("form3Example4");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

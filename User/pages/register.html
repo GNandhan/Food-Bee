@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,25 +11,20 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
     body {
       font-family: "DM Sans";
     }
-
     @import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
-
     .allison-regular {
       font-family: "Allison";
       font-weight: normal;
       /* Use 'normal' instead of '400' */
       font-style: normal;
     }
-
     .nav-link {
       position: relative;
       text-decoration: none;
     }
-
     .nav-link::after {
       content: '';
       position: absolute;
@@ -41,19 +35,17 @@
       background-color: transparent;
       transition: background-color 0.3s ease;
     }
-
     .nav-link:hover::after {
       background-color: #FFC107;
     }
-
     .form-icon {
       font-size: 1.2rem;
     }
     .footer-container {
-            position: fixed;
-            bottom: 0;
-            background-color: white;
-        }
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    }
   </style>
 </head>
 
@@ -93,22 +85,45 @@
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
                   <form class="mx-1 mx-md-4">
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="bi bi-envelope me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
+                      <i class="bi bi-egg-fried me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm"
-                          placeholder="Enter email id" />
+                        <input type="text" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter Name" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="bi bi-shield-lock me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
+                      <i class="bi bi-geo-alt me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4c" class="form-control rounded-4 border-0 p-3 shadow-sm"
-                          placeholder="Enter Password" />
+                        <input type="text" id="form3Example4c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter Location" required/>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <a href="./home.html" type="button" class="btn btn-warning rounded-pill px-5 btn-lg">Login</a>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-envelope me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example4c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter Email Id" required/>
+                      </div>
                     </div>
+                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-lock me-3 text-warning form-icon"></i> 
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="form3Example4c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter Password" required/>
+                      </div>
+                    </div> -->
+                    <div class="d-flex flex-row align-items-center mb-3">
+                      <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
+                      <div class="form-outline flex-fill position-relative mb-0">
+                          <div class="input-group shadow-sm rounded-4">
+                              <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                              <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-warning rounded-pill px-5 btn-lg">Register</button>
+                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <span>Already a User?</span> 
+                      <a href="./login.html" type="button" class="text-decoration-none px-2 mx-2"> Login now <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                  </div>
                   </form>
                 </div>
                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
@@ -141,6 +156,17 @@
       </footer>
   </div>
   <!-- Footer closed -->
+  <script>
+    // Toggle password visibility
+        document.getElementById("showPassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("form3Example4");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
