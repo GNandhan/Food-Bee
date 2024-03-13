@@ -1,3 +1,7 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +52,6 @@
     }
   </style>
 </head>
-
 <body>
   <!-- Navbar -->
   <div class="container">
@@ -59,20 +62,9 @@
           <div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div>
         </a>
       </div>
-
-      <!-- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-dark">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
-        <li><a href="#" class="nav-link px-2 text-dark">Contact</a></li>
-      </ul> -->
-
-      <!-- <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Login</button>
-      </div> -->
     </header>
   </div>
   <!-- Navbar Closed -->
-
   <!-- User Home -->
   <section class="my-2">
     <div class="container">
@@ -83,40 +75,46 @@
               <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12 col-xl-7 order-2 order-lg-1">
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
-                  <form class="mx-1 mx-md-4">
+                  <form method="POST"  class="mx-1 mx-md-4">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-egg-fried me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example3c" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" required/>
+                        <input type="text" id="form3Example3c" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" name="cusname" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" required/>
+                        <input type="text" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="cusloc" required/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-telephone me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="number" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Mobile no" name="cusmob" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-envelope me-3 text-warning form-icon"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" required/>
+                        <input type="email" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" name="cusemail" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-3">
                       <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
                       <div class="form-outline flex-fill position-relative mb-0">
                           <div class="input-group shadow-sm rounded-4  border border-top-0">
-                              <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                              <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" placeholder="Enter Password" name="cuspass" required />
                               <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                           </div>
                       </div>
                   </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-warning rounded-pill px-5 btn-lg">Register</button>
+                      <button type="submit" class="btn btn-warning rounded-pill px-5 btn-lg" name="cussubmit">Register</button>
                     </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <span>Already a User?</span> 
-                      <a href="./login.html" type="button" class="text-decoration-none px-2 mx-2"> Login now <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                      <a href="./login.php" type="button" class="text-decoration-none px-2 mx-2"> Login now <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
                   </div>
                   </form>
                 </div>
@@ -132,7 +130,33 @@
     </div>
   </section>
   <!-- User Home Closed -->
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["cussubmit"]))
+    {
+    $cuname= $_POST["cusname"];
+    $culoc= $_POST["cusloc"];
+    $cumob= $_POST["cusmob"];
+    $cumail= $_POST["cusemail"];
+    $cupass= $_POST["cuspass"];
 
+$sql = mysqli_query($conn,"INSERT INTO user(user_name, user_location, user_phno, user_email, user_password)
+ VALUES ('$cuname', '$culoc', '$cumob', '$cumail', '$cupass')");
+
+if ($sql == TRUE)
+{
+// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+echo '<script type="text/javascript">
+window.location = "login.php"
+</script>';
+} 
+else
+{
+// echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
+echo 'wrong username or password'; 
+}
+}
+?>
     <!-- Footer -->
     <div class="container">
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">

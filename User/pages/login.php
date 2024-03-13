@@ -1,3 +1,9 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+//  session_start();
+//  $_SESSION["email"]='';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +80,7 @@
                                     <div class="d-flex flex-row align-items-center mb-3">
                                         <i class="bi bi-envelope me-3 text-warning form-icon"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" required/>
+                                            <input type="email" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" name="email" required/>
                                         </div>
                                     </div>
                                     <!-- Password -->
@@ -82,18 +88,18 @@
                                         <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
                                         <div class="form-outline flex-fill position-relative mb-0">
                                             <div class="input-group shadow-sm rounded-4">
-                                                <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                                                <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="pass" placeholder="Enter Password" required />
                                                 <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                                                         
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-warning rounded-pill px-5 btn-lg">Login</button>
+                                        <button type="submit" name="cuslog" class="btn btn-warning rounded-pill px-5 btn-lg">Login</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
-                                        <a href="./register.html" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                                        <a href="./register.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
                                     </div>
                                 </form>
                             </div>
@@ -103,24 +109,45 @@
             </div>
         </div>
     </section>
-    <!-- User Home Closed -->
-    <!-- Section 8 -->
+<!-- User Home Closed -->
+<!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
+<?php
+if(isset($_POST["cuslog"]))
+{
+  $email=$_POST["email"];
+  $password=$_POST["pass"];
+  
+  $sq=mysqli_query($conn,"SELECT * FROM user WHERE user_email='$email' and user_password='$password'");
+  $check=mysqli_num_rows($sq);
+  
+if($check>0)
+{
+  $_SESSION["email"] = $email;  
+  $_SESSION["password"] = $password;  
+ header("location: home.php");
+
+ echo '<script type="text/javascript">window.location = "home.php"</script>';
+} 
+else
+{
+echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" . $conn->error."');</script>";
+}
+}
+?>
+<!-- Section 8 -->
     <div class="footer-container container fixed-bottom">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
                 <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
             </div>
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24"
-                            height="24"></i></a></li>
-                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24"
-                            height="24"></i></a></li>
-                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24"
-                            height="24"></i></a></li>
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
             </ul>
         </footer>
     </div>
-    <!-- Section 8 closed -->
+<!-- Section 8 closed -->
 <script>
     // Toggle password visibility
         document.getElementById("showPassword").addEventListener("click", function () {
@@ -132,8 +159,6 @@
       }
     });
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
