@@ -71,7 +71,7 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <a href="./login.html" type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Logout</a>
+        <a href="./login.php" type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Logout</a>
       </div>
     </header>
   </div>

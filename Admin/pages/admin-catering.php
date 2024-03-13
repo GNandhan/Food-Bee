@@ -23,9 +23,10 @@
         <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
       </div>
       <ul class="sidebar-nav">
-        <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="#"><i class="fa fa-plug"></i>Plugins</a></li>
-        <li><a href="#"><i class="fa fa-user"></i>Users</a></li>
+        <li><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
+        <li class="active"><a href="./admin-catering.php"><i class="fa fa-plug"></i>Catering</a></li>
+        <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
+        <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
