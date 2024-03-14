@@ -70,7 +70,8 @@
     <!-- User Home -->
     <section class="container my-4">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-6 col-xl-6">
+            <div class="col-lg-6 col-xl-6"> 
+            <div class="fs-2 fw-semibold text-secondary border-start border-3 px-3 mb-4">user login</div>
                 <div class="card text-black shadow-lg border-0" style="border-radius: 25px;">
                     <div class="card-body py-md-1">
                         <div class="row justify-content-center">
