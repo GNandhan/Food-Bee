@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2024 at 11:15 AM
+-- Generation Time: Mar 14, 2024 at 10:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,66 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`) VALUES
+(1, 'fbeeadmin', 'fbeeadmin@gmail.com', 'fbeeadmin@');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catering`
+--
+
+CREATE TABLE `catering` (
+  `catering_id` int(11) NOT NULL,
+  `catering_name` varchar(50) NOT NULL,
+  `catering_owner` varchar(50) NOT NULL,
+  `catering_no` varchar(50) NOT NULL,
+  `catering_location` varchar(50) NOT NULL,
+  `catering_email` varchar(50) NOT NULL,
+  `catering_pass` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food`
+--
+
+CREATE TABLE `food` (
+  `food_id` int(11) NOT NULL,
+  `food_name` int(11) NOT NULL,
+  `food_quantity` int(11) NOT NULL,
+  `food_type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `user_location` varchar(20) NOT NULL,
+  `user_phno` varchar(20) NOT NULL,
+  `user_email` varchar(20) NOT NULL,
+  `user_password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_location`, `user_phno`, `user_email`, `user_password`) VALUES
+(1, 'Aswin', 'Kozhikode', '9865988754', 'aswin123@gmail.com', 'aswin123@'),
+(2, 'Amar', 'Ernakulam', '9887549865', 'amar123@gmail.com', 'amar123@'),
+(3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -45,6 +105,18 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `catering`
+--
+ALTER TABLE `catering`
+  ADD PRIMARY KEY (`catering_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -52,7 +124,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `catering`
+--
+ALTER TABLE `catering`
+  MODIFY `catering_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
