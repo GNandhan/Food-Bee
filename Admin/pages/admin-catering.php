@@ -46,8 +46,47 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="content-title">Test</h2>
-          <p>Lorem ipsum...</p>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Catering Agencies</h2>
+          <div class="container">
+            <div class="row my-5">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">

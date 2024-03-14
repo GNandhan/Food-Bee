@@ -23,7 +23,7 @@
         <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
       </div>
       <ul class="sidebar-nav">
-        <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+        <li class="active"><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Catering</a></li>
         <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
         <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
@@ -46,8 +46,35 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="content-title">Test</h2>
-          <p>Lorem ipsum...</p>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Dashboard</h2>
+          <div class="container" style="width:90%;">
+            <div class="row my-5">
+              <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                  <div class="card-body">
+                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">CATERING</h5>
+                    <div class="card-text fw-bold display-3 ">5</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                  <div class="card-body">
+                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">FOOD</h5>
+                    <div class="card-text fw-bold display-3 ">5</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                  <div class="card-body">
+                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">USER</h5>
+                    <div class="card-text fw-bold display-3 ">5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">

@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<!-- Dashboard body -->
+  <!-- Dashboard body -->
   <div id="wrapper">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
@@ -46,72 +46,68 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="content-title">Test</h2>
-
-          
+          <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Food List</h2>
           <div class="container">
-          <div class="row my-5">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-        <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-          <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Food 1</h5>
-            <p class="card-text">This is a short card.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-        <a  href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-          <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Food 1</h5>
-            <p class="card-text">This is a short card.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-        <a  href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-          <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Food 1</h5>
-            <p class="card-text">This is a short card.</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-        <a  href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-          <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Food 1</h5>
-            <p class="card-text">This is a short card.</p>
-          </div>
-        </a>
-      </div>
-    </div>
+            <div class="row my-5">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
+                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
+                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Food 1</h5>
+                    <p class="card-text">This is a short card.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Section 8 -->
       <div class="row">
-<!-- Section 8 -->
-  <div class="container-fluid" >
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
+        <div class="container">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+              <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+              <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
+              <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
+            </ul>
+          </footer>
+        </div>
       </div>
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
-      </ul>
-    </footer>
-  </div>
-<!-- Section 8 closed -->
-      </div>
+      <!-- Section 8 closed -->
     </section>
   </div>
-<!-- Dashboard body -->
-
-
+  <!-- Dashboard body -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
     const $button = document.querySelector('#sidebar-toggle');

@@ -23,7 +23,7 @@
         <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
       </div>
       <ul class="sidebar-nav">
-        <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Catering</a></li>
         <li class="active"><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
         <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
@@ -46,8 +46,37 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="content-title">Test</h2>
-          <p>Lorem ipsum...</p>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Users Details</h2>
+          <div class="container"  style="width:90%;">
+            <div class="row my-5">
+              <!-- Php code for displaying user details -->
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM user ORDER BY user_id ");
+$serialNo = 1;
+while($row=mysqli_fetch_assoc($sql))
+{
+    $us_id=$row['user_id'];
+    $us_name=$row['user_name'];
+    $us_loc=$row['user_location'];
+    $us_phno=$row['user_phno'];
+    $us_mail=$row['user_email'];
+?>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
+                <div href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow-lg border-0">
+                  <img src="../static/profile.png" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
+                  <div class="card-body">
+                    <h5 class="card-title h4 fw-bold"><?php echo $us_name; ?></h5>
+                    <p class="card-text"><?php echo $us_loc; ?></p>
+                    <p class="card-text"><?php echo $us_phno; ?></p>
+                    <p class="card-text"><?php echo $us_mail; ?></p>
+                  </div>
+                </div>
+              </div>
+<?php
+}
+?>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
