@@ -1,8 +1,8 @@
 <?php
  include './connect.php';
  error_reporting(0);
-//  session_start();
-//  $_SESSION["email"]='';
+ session_start();
+ $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,11 +1,6 @@
 <?php
  include './connect.php';
  error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:admin-login.php');
- }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin-Home</title>
-  <link rel="stylesheet" href="../static/admin.css">
+  <link rel="stylesheet" href="../static/catering.css">
   <link rel="icon" href="../static/icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -29,9 +24,8 @@
       </div>
       <ul class="sidebar-nav">
         <li class="active"><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Catering</a></li>
-        <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
-        <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
+        <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Add Food</a></li>
+        <li><a href="./admin-user.php"><i class="fa fa-user"></i>View Request</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
