@@ -43,6 +43,21 @@
         </div>
       </nav>
     </div>
+<?php
+// Query to get the counts
+$result = $conn->query("SELECT COUNT(*) AS catering_count FROM catering");
+$row = $result->fetch_assoc();
+$catering_count = $row['catering_count'];
+
+$result = $conn->query("SELECT COUNT(*) AS food_count FROM food");
+$row = $result->fetch_assoc();
+$food_count = $row['food_count'];
+
+$result = $conn->query("SELECT COUNT(*) AS user_count FROM user");
+$row = $result->fetch_assoc();
+$user_count = $row['user_count'];
+
+?>
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
@@ -53,7 +68,7 @@
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">CATERING</h5>
-                    <div class="card-text fw-bold display-3 ">5</div>
+                    <div class="card-text fw-bold display-3 "><?php echo $catering_count; ?></div>
                   </div>
                 </div>
               </div>
@@ -61,7 +76,7 @@
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">FOOD</h5>
-                    <div class="card-text fw-bold display-3 ">5</div>
+                    <div class="card-text fw-bold display-3 "><?php echo $food_count; ?></div>
                   </div>
                 </div>
               </div>
@@ -69,7 +84,7 @@
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">USER</h5>
-                    <div class="card-text fw-bold display-3 ">5</div>
+                    <div class="card-text fw-bold display-3 "><?php echo $user_count; ?></div>
                   </div>
                 </div>
               </div>
