@@ -6,6 +6,17 @@
  {
     header('location:cat-login.php');
  }
+ // Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT * FROM `catering` WHERE `catering_email`='$email'");
+
+if ($row = mysqli_fetch_assoc($query)) {
+    $cat_name = $row['catering_name'];
+    $cat_own = $row['catering_owner'];
+    $cat_no = $row['catering_no'];
+    $cat_location = $row['catering_location'];
+    $cat_mail = $row['catering_email'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +63,6 @@
     </div>
 <?php
 // Query to get the counts
-$result = $conn->query("SELECT * FROM catering");
-$row = $result->fetch_assoc();
-$catering_count = $row['catering_count'];
-
 $result = $conn->query("SELECT COUNT(*) AS food_count FROM food");
 $row = $result->fetch_assoc();
 $food_count = $row['food_count'];
@@ -72,15 +79,21 @@ $user_count = $row['user_count'];
           <div class="container" style="width:90%;">
             <div class="row my-5">
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
-                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow-lg border-1 border-end-0 border-warning">
                   <div class="card-body">
-                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">CATERING</h5>
-                    <div class="card-text fw-bold display-3 "><?php echo $catering_count; ?></div>
+                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-3 border-warning">CATERING</h5>
+                    <div class="card-text fw-bold display-3 "><?php echo $cat_name; ?></div>
+                    <p class="card-text text-secondary">Owner &nbsp;&nbsp;&nbsp;: <span class="text-dark"><?php echo $cat_own; ?></span></p>
+                    <p class="card-text text-secondary">Mob no &nbsp;&nbsp;: <span class="text-dark"><?php echo $cat_no; ?></span></p>
+                    <p class="card-text text-secondary">Location : <span class="text-dark"><?php echo $cat_location; ?></span></p>
+                    <p class="card-text text-secondary">Mail id &nbsp;&nbsp;&nbsp;: <span class="text-dark"><?php echo $cat_mail; ?></span></p>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row my-5">
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
-                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow-lg border-1 border-top-0 border-warning">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">FOOD</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $food_count; ?></div>
@@ -88,7 +101,7 @@ $user_count = $row['user_count'];
                 </div>
               </div>
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
-                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow-lg border-1 border-top-0 border-warning">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">Request</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $user_count; ?></div>
