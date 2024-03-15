@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,10 +126,12 @@ while($row=mysqli_fetch_assoc($sql))
         <p class="text-secondary">Catering : <?php echo $cat_name; ?></p>
         <p class="text-secondary">Number &nbsp;: <?php echo $cat_no; ?></p>
       </div>
+      <form action="process_request.php" method="post">
       <div class="modal-footer">
         <button type="button" class="rounded-4 px-4 btn btn-dark" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="rounded-4 px-4 btn btn-warning">Send Request</button>
+        <button type="button" class="rounded-4 px-4 btn btn-warning" name="submit_request">Send Request</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -139,10 +141,36 @@ while($row=mysqli_fetch_assoc($sql))
     </div>
   </div>
   <!-- User Home Closed -->
+  <?php
+if(isset($_POST['submit_request'])) {
+  // Extract food_id from the modalId
+  $food_id = substr($_POST['modalId'], 5);
+
+  // Get user_id from session or any other source
+  $user_id = 1; // For example, replace with your logic to get user_id
+
+  // Current date
+  $request_date = date("Y-m-d H:i:s");
+
+  // Set request_status (You may want to set it to pending or any other default value)
+  $request_status = 'pending';
+
+  // Prepare and execute the SQL query to insert into the request table
+  $query = "INSERT INTO `request`(`request_date`, `food_id`, `user_id`, `request_status`) 
+            VALUES ('$request_date', '$food_id', '$user_id', '$request_status')";
+
+  if(mysqli_query($conn, $query)) {
+      // If insertion is successful, you can redirect or do any other action
+      header("Location: success_page.php");
+      exit();
+  } else {
+      // If insertion fails, handle the error
+      echo "Error: " . $query . "<br>" . mysqli_error($conn);
+  }
+}
+?>
 
 
-
-  
   <!-- Section 6 -->
   <div class="container-fluid">
     <div class="row">
