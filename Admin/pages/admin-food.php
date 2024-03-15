@@ -41,9 +41,12 @@
             <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
           </div>
           <div class="d-flex align-items-center position-absolute end-0">
-            <button class="btn rounded-circle border-0" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn rounded-circle border-0"  data-bs-toggle="dropdown" aria-expanded="false">
               <img src="../static/user.png" alt="" width="40">
             </button>
+            <ul class="dropdown-menu" style="margin-right:20px;">
+                <li><a class="dropdown-item" href="admin-login.php">Log out</a></li>
+            </ul>
           </div>
         </div>
       </nav>

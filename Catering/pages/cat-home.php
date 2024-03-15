@@ -1,13 +1,18 @@
 <?php
  include './connect.php';
  error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:cat-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Home</title>
+  <title>Catering-Home</title>
   <link rel="stylesheet" href="../static/catering.css">
   <link rel="icon" href="../static/icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -23,9 +28,9 @@
         <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
       </div>
       <ul class="sidebar-nav">
-        <li class="active"><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Add Food</a></li>
-        <li><a href="./admin-user.php"><i class="fa fa-user"></i>View Request</a></li>
+        <li class="active"><a href="./cat-home.php"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="./cat-food.php"><i class="fa fa-plug"></i>Add Food</a></li>
+        <li><a href="./cat-request.php"><i class="fa fa-user"></i>View Request</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
@@ -34,17 +39,20 @@
           <div class="navbar-header position-absolute top-0">
             <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
           </div>
-          <div class="d-flex align-items-center position-absolute end-0">
-            <button class="btn rounded-circle border-0" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <div class="d-flex align-items-center position-absolute end-0 ">
+            <button class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="../static/user.png" alt="" width="40">
             </button>
+            <ul class="dropdown-menu" style="margin-right:20px;">
+                <li><a class="dropdown-item" href="cat-login.php">Log out</a></li>
+            </ul>
           </div>
         </div>
       </nav>
     </div>
 <?php
 // Query to get the counts
-$result = $conn->query("SELECT COUNT(*) AS catering_count FROM catering");
+$result = $conn->query("SELECT * FROM catering");
 $row = $result->fetch_assoc();
 $catering_count = $row['catering_count'];
 
@@ -59,8 +67,8 @@ $user_count = $row['user_count'];
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Dashboard</h2>
-        <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-warning mb-5">Admin dashboard now displays catering agencies, food items, and user profiles</div>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Dashboard- <span class="text-warning">catering</span></h2>
+        <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-warning mb-5">The catering agency can view profiles, add foods, and manage requests by approving them.</div>
           <div class="container" style="width:90%;">
             <div class="row my-5">
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
@@ -82,7 +90,7 @@ $user_count = $row['user_count'];
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
-                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">USER</h5>
+                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">Request</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $user_count; ?></div>
                   </div>
                 </div>
