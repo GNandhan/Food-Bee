@@ -49,42 +49,36 @@
           <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Food List</h2>
           <div class="container">
             <div class="row my-5">
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM food ORDER BY food_id ");
+$serialNo = 1;
+while($row=mysqli_fetch_assoc($sql))
+{
+    $food_id=$row['food_id'];
+    $food_name=$row['food_name'];
+    $food_qua=$row['food_quantity'];
+    $food_type=$row['food_type'];
+    $food_img=$row['food_img'];
+    $food_date=$row['food_date'];
+    $food_location=$row['food_location'];
+    $food_catid=$row['catering_id'];
+?>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
+                <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
+                  <img src="../static/food/<?php echo $food_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
                   <div class="card-body">
-                    <h5 class="card-title">Food 1</h5>
-                    <p class="card-text">This is a short card.</p>
+                    <div class="card-title fs-2 fw-bold"><?php echo $food_name; ?></div>
+                    <p class="card-text text-secondary"><?php echo $food_qua; ?></p>
+                    <p class="card-text text-secondary"><?php echo $food_type; ?></p>
+                    <p class="card-text text-secondary"><?php echo $us_mail; ?></p>
+                    <p class="card-text text-secondary"><?php echo $food_location; ?></p>
+                    <p class="card-text text-dark"><?php echo $food_date; ?></p>
                   </div>
-                </a>
+                </div>
               </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Food 1</h5>
-                    <p class="card-text">This is a short card.</p>
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Food 1</h5>
-                    <p class="card-text">This is a short card.</p>
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-1">
-                <a href="./User/pages/login.php" class="card text-decoration-none h-100 rounded-4 shadow border-0">
-                  <img src="User/static/food 1.jpg" class="card-img-top rounded-top-4" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Food 1</h5>
-                    <p class="card-text">This is a short card.</p>
-                  </div>
-                </a>
-              </div>
+<?php
+}
+?>             
             </div>
           </div>
         </div>
