@@ -6,6 +6,18 @@
  {
     header('location:cat-login.php');
  }
+  // Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT * FROM `catering` WHERE `catering_email`='$email'");
+
+if ($row = mysqli_fetch_assoc($query)) {
+    $cat_id = $row['catering_id'];
+    $cat_name = $row['catering_name'];
+    $cat_own = $row['catering_owner'];
+    $cat_no = $row['catering_no'];
+    $cat_location = $row['catering_location'];
+    $cat_mail = $row['catering_email'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,6 +142,7 @@ if(isset($_GET['fd_id']))
 <!-- PHP CODE FOR INSERTING THE DATA -->
 <?php
 if(isset($_POST["fdsubmit"])){
+    $catering_id = $cat_id;
     $fd_id = $_POST["fdid"];
     $fd_name= $_POST["fdname"];
     $fd_type= $_POST["fdtype"];
@@ -146,8 +159,8 @@ if(isset($_POST["fdsubmit"])){
 $fd_id = $_POST["fdid"];
 
 if($fd_id=='') {
-  $sql = mysqli_query($conn,"INSERT INTO food (food_name, food_quantity, food_type, food_img, food_date, food_location) 
-                                       VALUES ('$fd_name','$fd_qua','$fd_type','$filename', NOW(), '$fd_loc')");
+  $sql = mysqli_query($conn,"INSERT INTO food (food_name, food_quantity, food_type, food_img, food_date, food_location, catering_id) 
+                                       VALUES ('$fd_name','$fd_qua','$fd_type','$filename', NOW(), '$fd_loc', '$catering_id')");
 } else {
   // Update existing record
   if ($filename) {
@@ -155,10 +168,10 @@ if($fd_id=='') {
       $img = "../static/food/" . $fd_img;
       unlink($img);
       // Update record with new image
-      $sql = mysqli_query($conn, "UPDATE food SET food_name='$fd_name', food_quantity='$fd_qua', food_type='$fd_type', food_img='$filename', food_location='$fd_loc' WHERE food_id='$fd_id'");
+      $sql = mysqli_query($conn, "UPDATE food SET food_name='$fd_name', food_quantity='$fd_qua', food_type='$fd_type', food_img='$filename', food_location='$fd_loc', catering_id='$catering_id' WHERE food_id='$fd_id'");
   } else {
       // Update record without changing the image
-      $sql =  mysqli_query($conn, "UPDATE food SET food_name='$fd_name', food_quantity='$fd_qua', food_type='$fd_type', food_location='$fd_loc' WHERE food_id='$fd_id'");
+      $sql =  mysqli_query($conn, "UPDATE food SET food_name='$fd_name', food_quantity='$fd_qua', food_type='$fd_type', food_location='$fd_loc', catering_id='$catering_id' WHERE food_id='$fd_id'");
   }
 }
 if ($sql == TRUE){

@@ -51,6 +51,7 @@ if ($row = mysqli_fetch_assoc($query)) {
             <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
           </div>
           <div class="d-flex align-items-center position-absolute end-0 ">
+          <div class="me-3 fs-3"><?php echo $cat_name; ?></div>
             <button class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="../static/user.png" alt="" width="40">
             </button>
