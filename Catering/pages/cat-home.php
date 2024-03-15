@@ -79,7 +79,7 @@ $user_count = $row['user_count'];
           <div class="container" style="width:90%;">
             <div class="row my-5">
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
-                <div class="card text-decoration-none h-100 rounded-4 py-4 shadow-lg border-1 border-end-0 border-warning">
+                <div class="card text-decoration-none h-100 rounded-4 py-4 p-5 shadow-lg border-1 border-end-0 border-warning">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-3 border-warning">CATERING</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $cat_name; ?></div>

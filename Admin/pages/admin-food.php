@@ -73,7 +73,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
                 <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
-                  <img src="../static/food/<?php echo $food_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
+                  <img src="../../Catering/static/food/<?php echo $food_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
                   <div class="card-body">
                     <div class="card-title fs-2 fw-bold"><?php echo $food_name; ?></div>
                     <p class="card-text text-secondary"><?php echo $food_qua; ?></p>

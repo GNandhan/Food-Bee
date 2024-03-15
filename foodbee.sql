@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2024 at 10:28 AM
+-- Generation Time: Mar 15, 2024 at 08:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,6 +57,13 @@ CREATE TABLE `catering` (
   `catering_pass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `catering`
+--
+
+INSERT INTO `catering` (`catering_id`, `catering_name`, `catering_owner`, `catering_no`, `catering_location`, `catering_email`, `catering_pass`) VALUES
+(1, '3Star', 'Amal Joshy', '9887659887', 'Kozhikode', '3star123@gmail.com', '3star123@');
+
 -- --------------------------------------------------------
 
 --
@@ -65,9 +72,13 @@ CREATE TABLE `catering` (
 
 CREATE TABLE `food` (
   `food_id` int(11) NOT NULL,
-  `food_name` int(11) NOT NULL,
-  `food_quantity` int(11) NOT NULL,
-  `food_type` int(11) NOT NULL
+  `food_name` varchar(20) NOT NULL,
+  `food_quantity` varchar(20) NOT NULL,
+  `food_type` varchar(20) NOT NULL,
+  `food_img` varchar(100) NOT NULL,
+  `food_date` date NOT NULL DEFAULT current_timestamp(),
+  `food_location` varchar(20) NOT NULL,
+  `catering_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -92,7 +103,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `user_name`, `user_location`, `user_phno`, `user_email`, `user_password`) VALUES
 (1, 'Aswin', 'Kozhikode', '9865988754', 'aswin123@gmail.com', 'aswin123@'),
 (2, 'Amar', 'Ernakulam', '9887549865', 'amar123@gmail.com', 'amar123@'),
-(3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@');
+(3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@'),
+(4, 'Goutham', 'Kollam', '9865875498', 'goutham123@gmail.com', 'goutham123@');
 
 --
 -- Indexes for dumped tables
@@ -109,6 +121,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `catering`
   ADD PRIMARY KEY (`catering_id`);
+
+--
+-- Indexes for table `food`
+--
+ALTER TABLE `food`
+  ADD PRIMARY KEY (`food_id`);
 
 --
 -- Indexes for table `user`
@@ -130,13 +148,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `catering`
 --
 ALTER TABLE `catering`
-  MODIFY `catering_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `catering_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `food`
+--
+ALTER TABLE `food`
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
