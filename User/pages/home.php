@@ -121,6 +121,10 @@ while($row=mysqli_fetch_assoc($sql))
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form method="post" action="process_request.php">
+          <input type="hidden" name="food_id" value="<?php echo $food_id; ?>">
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+          
         <img src="../../Catering/static/food/<?php echo $food_img; ?>" alt="" style="object-fit: contain; width: 100%; height: 100%;">
         <div class="fs-2 fw-bold">Food : <?php echo $food_name; ?></div>
         <p class="text-secondary">Quantity : <?php echo $food_qua; ?></p>
@@ -129,14 +133,12 @@ while($row=mysqli_fetch_assoc($sql))
         <p class="text-secondary">Catering : <?php echo $cat_name; ?></p>
         <p class="text-secondary">Number &nbsp;: <?php echo $cat_no; ?></p>
       </div>
-<form action="process_request.php" method="post">
   <div class="modal-footer">
     <input type="hidden" name="modalId" value="<?php echo $modalId; ?>"> <!-- This holds the modalId -->
     <button type="button" class="rounded-4 px-4 btn btn-dark" data-bs-dismiss="modal">Close</button>
     <button type="submit" class="rounded-4 px-4 btn btn-warning" name="submit_request">Send Request</button> <!-- Changed type to submit -->
   </div>
-</form>
-
+  </form>
     </div>
   </div>
 </div>
@@ -146,35 +148,6 @@ while($row=mysqli_fetch_assoc($sql))
     </div>
   </div>
   <!-- User Home Closed -->
-  <?php
-if(isset($_POST['submit_request'])) {
-  // Extract food_id from the modalId
-  $food_id = substr($_POST['modalId'], 5);
-
-  // Get user_id from session or any other source
-  $user_id = 1; // For example, replace with your logic to get user_id
-
-  // Current date
-  $request_date = date("Y-m-d H:i:s");
-
-  // Set request_status (You may want to set it to pending or any other default value)
-  $request_status = 'pending';
-
-  // Prepare and execute the SQL query to insert into the request table
-  $query = "INSERT INTO `request`(`request_date`, `food_id`, `user_id`, `request_status`) 
-            VALUES ('$request_date', '$food_id', '$user_id', '$request_status')";
-
-  if(mysqli_query($conn, $query)) {
-      // If insertion is successful, you can redirect or do any other action
-      header("Location: success_page.php");
-      exit();
-  } else {
-      // If insertion fails, handle the error
-      echo "Error: " . $query . "<br>" . mysqli_error($conn);
-  }
-}
-?>
-
 
   <!-- Section 6 -->
   <div class="container-fluid">
@@ -248,6 +221,8 @@ if(isset($_POST['submit_request'])) {
       </div>
     </div>
   </div>
+
+  
   <!-- Section 7 closed -->
   <!-- Section 8 -->
   <div class="container-fluid" style="background-color: black;">
