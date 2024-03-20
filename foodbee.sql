@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2024 at 12:38 PM
+-- Generation Time: Mar 20, 2024 at 05:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,18 +76,10 @@ CREATE TABLE `food` (
   `food_quantity` varchar(20) NOT NULL,
   `food_type` varchar(20) NOT NULL,
   `food_img` varchar(100) NOT NULL,
-  `food_date` date NOT NULL DEFAULT current_timestamp(),
+  `food_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `food_location` varchar(20) NOT NULL,
   `catering_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `food`
---
-
-INSERT INTO `food` (`food_id`, `food_name`, `food_quantity`, `food_type`, `food_img`, `food_date`, `food_location`, `catering_id`) VALUES
-(12, 'mandi', '10', 'Non-Veg', 'Screenshot 2024-03-13 101825.png', '2024-03-15', 'kollam', 1),
-(13, 'chicken biriyani', '50', 'Non-Veg', 'Screenshot 2024-03-11 105651.png', '2024-03-15', 'kottayam', 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +89,7 @@ INSERT INTO `food` (`food_id`, `food_name`, `food_quantity`, `food_type`, `food_
 
 CREATE TABLE `request` (
   `request_id` int(11) NOT NULL,
-  `request_date` varchar(20) NOT NULL DEFAULT current_timestamp(),
+  `request_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `food_id` int(11) NOT NULL,
   `user_id` int(10) NOT NULL,
   `request_status` enum('Pending','Approve','Decline') NOT NULL
@@ -182,7 +174,7 @@ ALTER TABLE `catering`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request`
