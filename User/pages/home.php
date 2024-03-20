@@ -1,6 +1,21 @@
 <?php
  include './connect.php';
 //  error_reporting(0);
+session_start();
+if($_SESSION["email"]=="")
+{
+   header('location:login.php');
+}
+// Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT `user_id`, `user_name`, `user_location`, `user_phno` FROM `user` WHERE `user_email`='$email'");
+
+if ($row = mysqli_fetch_assoc($query)) {
+   $Userid = $row['user_id'];
+   $Username = $row['user_name'];
+   $Userloc = $row['user_location'];
+   $Userphno = $row['user_phno'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +72,7 @@
         <li><a href="#" class="nav-link px-2 text-dark">Contact</a></li>
       </ul>
       <div class="col-md-3 text-end">
+      <span class="text-dark me-3 fw-bold">Welcome, <?php echo $Username; ?></span>
         <a href="./login.php" type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Logout</a>
       </div>
     </header>
@@ -121,6 +137,10 @@ while($row=mysqli_fetch_assoc($sql))
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form method="post" action="process_request.php">
+          <input type="hidden" name="food_id" value="<?php echo $food_id; ?>">
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+
         <img src="../../Catering/static/food/<?php echo $food_img; ?>" alt="" style="object-fit: contain; width: 100%; height: 100%;">
         <div class="fs-2 fw-bold">Food : <?php echo $food_name; ?></div>
         <p class="text-secondary">Quantity : <?php echo $food_qua; ?></p>
@@ -129,13 +149,12 @@ while($row=mysqli_fetch_assoc($sql))
         <p class="text-secondary">Catering : <?php echo $cat_name; ?></p>
         <p class="text-secondary">Number &nbsp;: <?php echo $cat_no; ?></p>
       </div>
-<form action="process_request.php" method="post">
   <div class="modal-footer">
     <input type="hidden" name="modalId" value="<?php echo $modalId; ?>"> <!-- This holds the modalId -->
     <button type="button" class="rounded-4 px-4 btn btn-dark" data-bs-dismiss="modal">Close</button>
     <button type="submit" class="rounded-4 px-4 btn btn-warning" name="submit_request">Send Request</button> <!-- Changed type to submit -->
   </div>
-</form>
+  </form>
     </div>
   </div>
 </div>
@@ -145,35 +164,6 @@ while($row=mysqli_fetch_assoc($sql))
     </div>
   </div>
   <!-- User Home Closed -->
-  <?php
-if(isset($_POST['submit_request'])) {
-  // Extract food_id from the modalId
-  $food_id = substr($_POST['modalId'], 5);
-
-  // Get user_id from session or any other source
-  $user_id = 1; // For example, replace with your logic to get user_id
-
-  // Current date
-  $request_date = date("Y-m-d H:i:s");
-
-  // Set request_status (You may want to set it to pending or any other default value)
-  $request_status = 'pending';
-
-  // Prepare and execute the SQL query to insert into the request table
-  $query = "INSERT INTO `request`(`request_date`, `food_id`, `user_id`, `request_status`) 
-            VALUES ('$request_date', '$food_id', '$user_id', '$request_status')";
-
-  if(mysqli_query($conn, $query)) {
-      // If insertion is successful, you can redirect or do any other action
-      header("Location: success_page.php");
-      exit();
-  } else {
-      // If insertion fails, handle the error
-      echo "Error: " . $query . "<br>" . mysqli_error($conn);
-  }
-}
-?>
-
 
   <!-- Section 6 -->
   <div class="container-fluid">
