@@ -1,41 +1,30 @@
 <?php
-session_start(); // Start the session
-
-// Ensure user is logged in and user_id is set in the session
-if (!isset($_SESSION['user_id'])) {
-    // Redirect the user to the login page or handle the situation appropriately
-    header("Location: login.php");
-    exit; // Terminate script execution after redirecting
-}
-
-// Include the database connection file
 include './connect.php';
+session_start();
 
-// Process the form submission
-if (isset($_POST['submit_request'])) {
-    // Retrieve data from the form
+if(isset($_POST['submit_request'])) {
+    // Get form data
     $food_id = $_POST['food_id'];
+    $user_id = $_POST['user_id'];
 
-    // Ensure user_id is already fetched from session
-    if(isset($_POST['user_id'])){
-        $user_id = $_POST['user_id'];
+    // You can set the request_date as the current date/time
+    $request_date = date('Y-m-d H:i:s');
+
+    // Set the request_status, assuming it's pending when the request is made
+    $request_status = 'pending';
+
+    // Insert the request into the database
+    $insert_query = "INSERT INTO `request` (`request_date`, `food_id`, `user_id`, `request_status`) VALUES ('$request_date', '$food_id', '$user_id', '$request_status')";
+
+    if(mysqli_query($conn, $insert_query)) {
+        // Request successfully inserted, redirect the user and show an alert message
+        echo '<script type="text/javascript">';
+        echo 'alert("Request sent successfully!");';
+        echo 'window.location = "home.php";';
+        echo '</script>';
     } else {
-        echo "User ID not found in form data.";
-        exit; // Exit the script if user_id is not found
-    }
-    
-    // Add other data if needed
-
-    // Insert data into the request table
-    $query = "INSERT INTO `request`(`request_id`, `request_date`, `food_id`, `user_id`, `request_status`) VALUES (NULL, NOW(), '$food_id', '$user_id', 'pending')";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        // Request successfully submitted
-        echo "Request submitted successfully!";
-    } else {
-        // Error handling
-        echo "Error: " . mysqli_error($conn);
+        // Handle the case where insertion fails
+        echo "Error: " . $insert_query . "<br>" . mysqli_error($conn);
     }
 }
 ?>
