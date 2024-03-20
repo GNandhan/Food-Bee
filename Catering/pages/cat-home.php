@@ -68,9 +68,9 @@ $result = $conn->query("SELECT COUNT(*) AS food_count FROM food");
 $row = $result->fetch_assoc();
 $food_count = $row['food_count'];
 
-$result = $conn->query("SELECT COUNT(*) AS user_count FROM user");
+$result = $conn->query("SELECT COUNT(*) AS request_count FROM request");
 $row = $result->fetch_assoc();
-$user_count = $row['user_count'];
+$request_count = $row['request_count'];
 ?>
     <section id="content-wrapper">
       <div class="row">
@@ -105,7 +105,7 @@ $user_count = $row['user_count'];
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow-lg border-1 border-top-0 border-warning">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">Request</h5>
-                    <div class="card-text fw-bold display-3 "><?php echo $user_count; ?></div>
+                    <div class="card-text fw-bold display-3 "><?php echo $request_count; ?></div>
                   </div>
                 </div>
               </div>
