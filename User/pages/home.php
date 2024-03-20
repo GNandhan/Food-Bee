@@ -139,7 +139,7 @@ while($row=mysqli_fetch_assoc($sql))
       <div class="modal-body">
       <form method="post" action="process_request.php">
           <input type="hidden" name="food_id" value="<?php echo $food_id; ?>">
-          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+          <input type="hidden" name="user_id" value="<?php echo $Userid; ?>">
 
         <img src="../../Catering/static/food/<?php echo $food_img; ?>" alt="" style="object-fit: contain; width: 100%; height: 100%;">
         <div class="fs-2 fw-bold">Food : <?php echo $food_name; ?></div>
@@ -237,7 +237,6 @@ while($row=mysqli_fetch_assoc($sql))
       </div>
     </div>
   </div>
-
   
   <!-- Section 7 closed -->
   <!-- Section 8 -->
