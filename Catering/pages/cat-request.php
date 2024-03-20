@@ -71,6 +71,7 @@
       <th scope="col">Location</th>
       <th scope="col">Quantity</th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -116,7 +117,7 @@ while($row=mysqli_fetch_assoc($sql))
       </div>
       <div class="row">
 <!-- Section 8 -->
-  <div class="container-fluid" >
+  <div class="container-fluid">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
         <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
