@@ -63,40 +63,44 @@
 <!-- Request Table -->
 <table class="table">
   <thead>
-    <tr>
+  <tr>
       <th scope="col">Slno</th>
       <th scope="col">Date</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Food</th>
-      <th scope="col">location</th>
+      <th scope="col">Location</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Status</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
 <?php  
-$sql=mysqli_query($conn,"SELECT * FROM food ORDER BY food_id ");
+// $sql=mysqli_query($conn,"SELECT * FROM request ORDER BY request_id ");
+$sql = mysqli_query($conn, "SELECT r.*, f.food_name, f.food_location, f.food_quantity, u.user_name
+                            FROM `request` r
+                            INNER JOIN food f ON r.food_id = f.food_id
+                            INNER JOIN user u ON r.user_id = u.user_id
+                            ORDER BY r.request_id DESC");
+
 $serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
-    $food_id=$row['food_id'];
-    $food_name=$row['food_name'];
-    $food_qua=$row['food_quantity'];
-    $food_type=$row['food_type'];
-    $food_img=$row['food_img'];
-    $food_date=$row['food_date'];
-    $food_location=$row['food_location'];
-    $food_catid=$row['catering_id'];
+  $request_id = $row['request_id'];
+  $request_date = $row['request_date'];
+  $food_name = $row['food_name'];
+  $user_name = $row['user_name'];
+  $food_location = $row['food_location'];
+  $food_quantity = $row['food_quantity'];
+  $request_status = $row['request_status'];
 ?>
-    <tr>
-      <th scope="row">1</th>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><div class="bg-warning rounded-4 p-2 text-center">pending</div></td>
+   <tr>
+      <th scope="row"><?php echo $serialNo++; ?></th>
+      <td><?php echo $request_date; ?></td>
+      <td><?php echo $user_name; ?></td>
+      <td><?php echo $food_name; ?></td>
+      <td><?php echo $food_location; ?></td>
+      <td><?php echo $food_quantity; ?></td>
+      <td><div class="bg-warning rounded-4 p-2 text-center"><?php echo $request_status; ?></div></td>
     </tr>
 <?php
 }
