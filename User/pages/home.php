@@ -70,6 +70,7 @@
           Home</div>
       </div>
     </div>
+
     <div class="row my-5">
 <?php  
 $sql=mysqli_query($conn,"SELECT * FROM food ORDER BY food_id ");
@@ -84,6 +85,8 @@ while($row=mysqli_fetch_assoc($sql))
     $food_date=$row['food_date'];
     $food_location=$row['food_location'];
     $catering_id=$row['catering_id'];
+
+
 
     $catering_query = mysqli_query($conn, "SELECT `catering_name`, `catering_no` FROM `catering` WHERE `catering_id`='$catering_id'");
     $catering_row = mysqli_fetch_assoc($catering_query);
@@ -126,12 +129,14 @@ while($row=mysqli_fetch_assoc($sql))
         <p class="text-secondary">Catering : <?php echo $cat_name; ?></p>
         <p class="text-secondary">Number &nbsp;: <?php echo $cat_no; ?></p>
       </div>
-      <form action="process_request.php" method="post">
-      <div class="modal-footer">
-        <button type="button" class="rounded-4 px-4 btn btn-dark" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="rounded-4 px-4 btn btn-warning" name="submit_request">Send Request</button>
-      </div>
-      </form>
+<form action="process_request.php" method="post">
+  <div class="modal-footer">
+    <input type="hidden" name="modalId" value="<?php echo $modalId; ?>"> <!-- This holds the modalId -->
+    <button type="button" class="rounded-4 px-4 btn btn-dark" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="rounded-4 px-4 btn btn-warning" name="submit_request">Send Request</button> <!-- Changed type to submit -->
+  </div>
+</form>
+
     </div>
   </div>
 </div>

@@ -76,7 +76,7 @@ CREATE TABLE `food` (
   `food_quantity` varchar(20) NOT NULL,
   `food_type` varchar(20) NOT NULL,
   `food_img` varchar(100) NOT NULL,
-  `food_date` date NOT NULL DEFAULT current_timestamp(),
+  `food_date` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
   `food_location` varchar(20) NOT NULL,
   `catering_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -97,7 +97,7 @@ INSERT INTO `food` (`food_id`, `food_name`, `food_quantity`, `food_type`, `food_
 
 CREATE TABLE `request` (
   `request_id` int(11) NOT NULL,
-  `request_date` varchar(20) NOT NULL DEFAULT current_timestamp(),
+  `request_date` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
   `food_id` int(11) NOT NULL,
   `user_id` int(10) NOT NULL,
   `request_status` enum('Pending','Approve','Decline') NOT NULL

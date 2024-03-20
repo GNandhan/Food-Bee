@@ -1,8 +1,8 @@
 <?php
  include './connect.php';
  error_reporting(0);
-//  session_start();
-//  $_SESSION["email"]='';
+ session_start();
+ $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,6 @@
         .allison-regular {
             font-family: "Allison";
             font-weight: normal;
-            /* Use 'normal' instead of '400' */
             font-style: normal;
         }
         .nav-link {
