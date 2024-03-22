@@ -6,7 +6,16 @@
  {
     header('location:cat-login.php');
  }
+
+ if(isset($_POST['approve_request'])) {
+    $request_id = $_POST['request_id'];
+    // Update request status to 'approved' in the database
+    $update_query = "UPDATE `request` SET `request_status` = 'approved' WHERE `request_id` = $request_id";
+    mysqli_query($conn, $update_query);
+    exit('success');
+ }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,8 +84,8 @@
     </tr>
   </thead>
   <tbody>
-<?php  
-// $sql=mysqli_query($conn,"SELECT * FROM request ORDER BY request_id ");
+  <?php
+// Database query to fetch requests
 $sql = mysqli_query($conn, "SELECT r.*, f.food_name, f.food_location, f.food_quantity, u.user_name
                             FROM `request` r
                             INNER JOIN food f ON r.food_id = f.food_id
@@ -101,7 +110,14 @@ while($row=mysqli_fetch_assoc($sql))
       <td><?php echo $food_name; ?></td>
       <td><?php echo $food_location; ?></td>
       <td><?php echo $food_quantity; ?></td>
-      <td><div class="bg-warning rounded-4 p-2 text-center"><?php echo $request_status; ?></div></td>
+      <td>
+         <!-- Button to approve request -->
+         <?php if($request_status != 'approved'): ?>
+            <button class="btn btn-success approve-request" data-request-id="<?php echo $request_id; ?>">Pending</button>
+         <?php else: ?>
+            <span class="text-success">Approved</span>
+         <?php endif; ?>
+      </td>
     </tr>
 <?php
 }
@@ -145,5 +161,34 @@ while($row=mysqli_fetch_assoc($sql))
       $wrapper.classList.toggle('toggled');
     });
   </script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.approve-request').click(function() {
+      var request_id = $(this).data('request-id');
+      var button = $(this);
+      // AJAX request to approve the request
+      $.ajax({
+        url: window.location.href,
+        method: 'POST',
+        data: {approve_request: true, request_id: request_id},
+        success: function(response) {
+          if(response === 'success') {
+            // Display success message
+            alert('Request approved successfully');
+            // Change button content to 'Approved' and color to green
+            button.removeClass('btn-success').addClass('btn-success').text('Approved');
+            button.closest('tr').find('.bg-warning').removeClass('bg-warning').addClass('bg-success').text('Approved');
+          } else {
+            alert('Failed to approve request');
+          }
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
