@@ -2,148 +2,164 @@
  include './connect.php';
  error_reporting(0);
  session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:cat-login.php');
- }
+ $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catering-Request</title>
-  <link rel="stylesheet" href="../static/catering.css">
-  <link rel="icon" href="../static/icon.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food-Bee: Catering-Login</title>
+    <link rel="stylesheet" href="User/static/home.css">
+    <link rel="icon" href="../static/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+        body {
+            font-family: "DM Sans";
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
+        .allison-regular {
+            font-family: "Allison";
+            font-weight: normal;
+            /* Use 'normal' instead of '400' */
+            font-style: normal;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+        .nav-link:hover::after {
+            background-color: #FFC107;
+        }
+        .form-icon {
+            font-size: 1.2rem;
+        }
+        .footer-container {
+            position: fixed;
+            bottom: 0;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<!-- Dashboard body -->
-  <div id="wrapper">
-    <aside id="sidebar-wrapper">
-      <div class="sidebar-brand">
-        <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
-      </div>
-      <ul class="sidebar-nav">
-        <li><a href="./cat-home.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="./cat-food.php"><i class="fa fa-plug"></i>Add Food</a></li>
-        <li class="active"><a href="./cat-request.php"><i class="fa fa-user"></i>View Request</a></li>
-      </ul>
-    </aside>
-    <div id="navbar-wrapper">
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid justify-content-between">
-          <div class="navbar-header position-absolute top-0">
-            <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
-          </div>
-          <div class="d-flex align-items-center position-absolute end-0 ">
-            <button class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="../static/user.png" alt="" width="40">
-            </button>
-            <ul class="dropdown-menu" style="margin-right:20px;">
-                <li><a class="dropdown-item" href="cat-login.php">Log out</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <!-- Navbar -->
+    <div class="container">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="../../index.html" class="d-inline-flex link-body-emphasis text-decoration-none fw-bold">
+                    <div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div>
+                </a>
+            </div>
+        </header>
     </div>
-
-    <section id="content-wrapper">
-      <div class="row">
-        <div class="col-lg-12">
-        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Request</h2>
-        <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-warning mb-5">Request from customers</div>
-          <div class="container" style="width:90%;">
-            <div class="row my-5">
-              <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
-                <div class="card text-decoration-none h-100 rounded-4 py-4 p-5 shadow-lg border-1 border-end-0 border-warning">
-<!-- Request Table -->
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">Slno</th>
-      <th scope="col">Date</th>
-      <th scope="col">Customer Name</th>
-      <th scope="col">Food</th>
-      <th scope="col">Location</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-<?php  
-// $sql=mysqli_query($conn,"SELECT * FROM request ORDER BY request_id ");
-$sql = mysqli_query($conn, "SELECT r.*, f.food_name, f.food_location, f.food_quantity, u.user_name
-                            FROM `request` r
-                            INNER JOIN food f ON r.food_id = f.food_id
-                            INNER JOIN user u ON r.user_id = u.user_id
-                            ORDER BY r.request_id DESC");
-
-$serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-  $request_id = $row['request_id'];
-  $request_date = $row['request_date'];
-  $food_name = $row['food_name'];
-  $user_name = $row['user_name'];
-  $food_location = $row['food_location'];
-  $food_quantity = $row['food_quantity'];
-  $request_status = $row['request_status'];
-?>
-   <tr>
-      <th scope="row"><?php echo $serialNo++; ?></th>
-      <td><?php echo $request_date; ?></td>
-      <td><?php echo $user_name; ?></td>
-      <td><?php echo $food_name; ?></td>
-      <td><?php echo $food_location; ?></td>
-      <td><?php echo $food_quantity; ?></td>
-      <td><div class="bg-warning rounded-4 p-2 text-center"><?php echo $request_status; ?></div></td>
-    </tr>
+    <!-- Navbar Closed -->
+    <!-- User Home -->
+    <section class="container my-4">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 col-xl-6"> 
+                <div class="fs-2 fw-semibold text-secondary border-start border-3 px-3 mb-4">catering login</div>
+                <div class="card text-black shadow-lg border-0" style="border-radius: 25px;">
+                    <div class="card-body py-md-1">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-8 col-xl-10 order-2 order-lg-1">
+                                <p class="text-center h2 fw-bold mb-4 mx-1 mx-md-4 mt-4">Sign in</p>
+                                <form class="mx-1 mx-md-4" method="post">
+                                    <div class="d-flex flex-row align-items-center mb-3">
+                                        <i class="bi bi-envelope me-3 text-warning form-icon"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="email" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" name="email" required/>
+                                        </div>
+                                    </div>
+                                    <!-- Password -->
+                                    <div class="d-flex flex-row align-items-center mb-3">
+                                        <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
+                                        <div class="form-outline flex-fill position-relative mb-0">
+                                            <div class="input-group shadow-sm rounded-4">
+                                                <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="pass" placeholder="Enter Password" required />
+                                                <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                        
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" name="catlog" class="btn btn-warning rounded-pill px-5 btn-lg">Login</button>
+                                    </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <span>Not registered yet?</span> 
+                                        <a href="./cat-reg.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- User Home Closed -->
+<!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
 <?php
+if(isset($_POST["catlog"]))
+{
+  $email=$_POST["email"];
+  $password=$_POST["pass"];
+  
+  $sq=mysqli_query($conn,"SELECT * FROM catering WHERE catering_email='$email' and catering_pass='$password'");
+  $check=mysqli_num_rows($sq);
+  
+if($check>0)
+{
+  $_SESSION["email"] = $email;  
+  $_SESSION["password"] = $password;  
+ header("location: cat-home.php");
+
+ echo '<script type="text/javascript">window.location = "cat-home.php"</script>';
+} 
+else
+{
+echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" . $conn->error."');</script>";
+}
 }
 ?>
-  </tbody>
-</table>
-<!-- Request table closed -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
 <!-- Section 8 -->
-  <div class="container-fluid">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
-      </div>
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
-      </ul>
-    </footer>
-  </div>
+    <div class="footer-container container fixed-bottom">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
+                <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
+            </ul>
+        </footer>
+    </div>
 <!-- Section 8 closed -->
-      </div>
-    </section>
-  </div>
-<!-- Dashboard body -->
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script>
-    const $button = document.querySelector('#sidebar-toggle');
-    const $wrapper = document.querySelector('#wrapper');
-    $button.addEventListener('click', (e) => {
-      e.preventDefault();
-      $wrapper.classList.toggle('toggled');
+<script>
+    // Toggle password visibility
+        document.getElementById("showPassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("form3Example4");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
     });
-  </script>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
