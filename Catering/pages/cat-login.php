@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
-                                        <a href="./register.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                                        <a href="./cat-reg.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
                                     </div>
                                 </form>
                             </div>

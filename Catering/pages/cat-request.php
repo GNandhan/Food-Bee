@@ -6,7 +6,16 @@
  {
     header('location:cat-login.php');
  }
+
+ if(isset($_POST['approve_request'])) {
+    $request_id = $_POST['request_id'];
+    // Update request status to 'approved' in the database
+    $update_query = "UPDATE `request` SET `request_status` = 'approved' WHERE `request_id` = $request_id";
+    mysqli_query($conn, $update_query);
+    exit('success');
+ }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,40 +72,52 @@
 <!-- Request Table -->
 <table class="table">
   <thead>
-    <tr>
+  <tr>
       <th scope="col">Slno</th>
       <th scope="col">Date</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Food</th>
-      <th scope="col">location</th>
+      <th scope="col">Location</th>
       <th scope="col">Quantity</th>
       <th scope="col">Status</th>
-      <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-<?php  
-$sql=mysqli_query($conn,"SELECT * FROM food ORDER BY food_id ");
+  <?php
+// Database query to fetch requests
+$sql = mysqli_query($conn, "SELECT r.*, f.food_name, f.food_location, f.food_quantity, u.user_name
+                            FROM `request` r
+                            INNER JOIN food f ON r.food_id = f.food_id
+                            INNER JOIN user u ON r.user_id = u.user_id
+                            ORDER BY r.request_id DESC");
+
 $serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
-    $food_id=$row['food_id'];
-    $food_name=$row['food_name'];
-    $food_qua=$row['food_quantity'];
-    $food_type=$row['food_type'];
-    $food_img=$row['food_img'];
-    $food_date=$row['food_date'];
-    $food_location=$row['food_location'];
-    $food_catid=$row['catering_id'];
+  $request_id = $row['request_id'];
+  $request_date = $row['request_date'];
+  $food_name = $row['food_name'];
+  $user_name = $row['user_name'];
+  $food_location = $row['food_location'];
+  $food_quantity = $row['food_quantity'];
+  $request_status = $row['request_status'];
 ?>
-    <tr>
-      <th scope="row">1</th>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><?php echo $food_date; ?></td>
-      <td><div class="bg-warning rounded-4 p-2 text-center">pending</div></td>
+   <tr>
+      <th scope="row"><?php echo $serialNo++; ?></th>
+      <td><?php echo $request_date; ?></td>
+      <td><?php echo $user_name; ?></td>
+      <td><?php echo $food_name; ?></td>
+      <td><?php echo $food_location; ?></td>
+      <td><?php echo $food_quantity; ?></td>
+      <td>
+         <!-- Button to approve request -->
+         <?php if($request_status != 'approved'): ?>
+            <button class="btn btn-success approve-request" data-request-id="<?php echo $request_id; ?>">Pending</button>
+         <?php else: ?>
+            <span class="text-success">Approved</span>
+         <?php endif; ?>
+      </td>
     </tr>
 <?php
 }
@@ -112,7 +133,7 @@ while($row=mysqli_fetch_assoc($sql))
       </div>
       <div class="row">
 <!-- Section 8 -->
-  <div class="container-fluid" >
+  <div class="container-fluid">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
         <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
@@ -140,5 +161,33 @@ while($row=mysqli_fetch_assoc($sql))
       $wrapper.classList.toggle('toggled');
     });
   </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.approve-request').click(function() {
+      var request_id = $(this).data('request-id');
+      var button = $(this);
+      // AJAX request to approve the request
+      $.ajax({
+        url: window.location.href,
+        method: 'POST',
+        data: {approve_request: true, request_id: request_id},
+        success: function(response) {
+          if(response === 'success') {
+            // Display success message
+            alert('Request approved successfully');
+            // Change button content to 'Approved' and color to green
+            button.removeClass('btn-success').addClass('btn-success').text('Approved');
+            button.closest('tr').find('.bg-warning').removeClass('bg-warning').addClass('bg-success').text('Approved');
+          } else {
+            alert('Failed to approve request');
+          }
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

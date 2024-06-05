@@ -1,6 +1,21 @@
 <?php
  include './connect.php';
 //  error_reporting(0);
+session_start();
+if($_SESSION["email"]=="")
+{
+   header('location:login.php');
+}
+// Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT `user_id`, `user_name`, `user_location`, `user_phno` FROM `user` WHERE `user_email`='$email'");
+
+if ($row = mysqli_fetch_assoc($query)) {
+   $Userid = $row['user_id'];
+   $Username = $row['user_name'];
+   $Userloc = $row['user_location'];
+   $Userphno = $row['user_phno'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +72,7 @@
         <li><a href="#" class="nav-link px-2 text-dark">Contact</a></li>
       </ul>
       <div class="col-md-3 text-end">
+      <span class="text-dark me-3 fw-bold">Welcome, <?php echo $Username; ?></span>
         <a href="./login.php" type="button" class="btn btn-dark rounded-pill px-5 py-1 me-2 fw-semibold">Logout</a>
       </div>
     </header>
@@ -123,8 +139,8 @@ while($row=mysqli_fetch_assoc($sql))
       <div class="modal-body">
       <form method="post" action="process_request.php">
           <input type="hidden" name="food_id" value="<?php echo $food_id; ?>">
-          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-          
+          <input type="hidden" name="user_id" value="<?php echo $Userid; ?>">
+
         <img src="../../Catering/static/food/<?php echo $food_img; ?>" alt="" style="object-fit: contain; width: 100%; height: 100%;">
         <div class="fs-2 fw-bold">Food : <?php echo $food_name; ?></div>
         <p class="text-secondary">Quantity : <?php echo $food_qua; ?></p>
@@ -221,7 +237,6 @@ while($row=mysqli_fetch_assoc($sql))
       </div>
     </div>
   </div>
-
   
   <!-- Section 7 closed -->
   <!-- Section 8 -->
